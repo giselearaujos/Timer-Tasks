@@ -1,11 +1,15 @@
 import React from 'react';
 
-import './style.scss';
+import style from './Button.module.scss';
 
-function Button() {
-  return (
-      <button className='button'>SEND</button>     
-    )  
+class Button extends React.Component <{children?: React.ReactNode}>{
+  render() {
+    return (
+      <button className={style.button}>
+        {this.props.children}
+      </button>     
+    );  
+  }
 };
 
 export default Button;

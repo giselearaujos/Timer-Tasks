@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './style.scss';
+import style from './List.module.scss';
 
 function List() {
   const tasksMock = [
@@ -22,11 +22,11 @@ function List() {
     },
   ]
   return(
-    <aside className='listTask'>
+    <aside className={style.listTask}>
       <h2>Tasks of the day</h2>
       <ul>
         {tasksMock.map((item, index) => (
-          <li key={index} className='item'>
+          <li key={index} className={style.item}>
             <h3>{item.task}</h3>
             <span>{item.time}</span>
           </li>
