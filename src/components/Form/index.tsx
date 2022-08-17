@@ -1,34 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import style from './Form.module.scss';
 import Button from '../Button';
+import { ITask } from '../../types/task';
 
-function Form() {
+function Form({setTasks}: {setTasks : React.Dispatch<React.SetStateAction<ITask[]>>}) {
+  const [task, setTask] = useState('');
+  const [timer, setTimer] = useState('00:00');
+
+  const addNewTask = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setTasks(oldTasks => [...oldTasks, {task, timer}]);        
+  } 
+
   return(
-    <form className={style.newTask}>
+    <form className={style.newTask} onSubmit={addNewTask}>
       <div className={style.inputContainer}>
         <label htmlFor="task">TASKS</label>
         <input
          type="text"
          name="task"
+         value={task}
+         onChange={event => setTask(event.target.value)}
          id="task"
          placeholder="Enter your task"
          required
         />
       </div>
       <div className={style.inputContainer}>
-        <label htmlFor="time">TIME</label>
+        <label htmlFor="timer">TIMER</label>
         <input
-         type="time"
+         type="timer"
          step="1"
-         name="time"
-         id="time"
+         name="timer"
+         value={timer}
+         onChange={event => setTimer(event.target.value)}
+         id="timer"
          min="00:00:00"
          max="01:30:00"         
          required
         />
       </div>
-      <Button>ADD</Button>
+      <Button type="submit">
+        Add
+      </Button>
     </form>
   );
 }
