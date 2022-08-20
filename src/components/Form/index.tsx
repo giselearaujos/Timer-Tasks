@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import style from './Form.module.scss';
 import Button from '../Button';
 import { ITask } from '../../types/task';
+import { v4 as uuidv4 } from 'uuid';
 
 function Form({setTasks}: {setTasks : React.Dispatch<React.SetStateAction<ITask[]>>}) {
   const [task, setTask] = useState('');
@@ -10,7 +11,18 @@ function Form({setTasks}: {setTasks : React.Dispatch<React.SetStateAction<ITask[
 
   const addNewTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setTasks(oldTasks => [...oldTasks, {task, timer}]);        
+    setTasks(
+      oldTasks => [
+        ...oldTasks,
+         {
+          id: uuidv4(),
+          task,
+          timer,
+          selected: false,
+          completed: false
+        }
+      ]
+    );        
   } 
 
   return(
