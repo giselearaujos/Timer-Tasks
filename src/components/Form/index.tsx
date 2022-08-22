@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 function Form({setTasks}: {setTasks : React.Dispatch<React.SetStateAction<ITask[]>>}) {
   const [task, setTask] = useState('');
-  const [timer, setTimer] = useState('00:00');
+  const [timer, setTimer] = useState('00:00:00');
 
   const addNewTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
