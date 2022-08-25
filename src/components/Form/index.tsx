@@ -5,7 +5,11 @@ import Button from '../Button';
 import { ITask } from '../../types/task';
 import { v4 as uuidv4 } from 'uuid';
 
-function Form({setTasks}: {setTasks : React.Dispatch<React.SetStateAction<ITask[]>>}) {
+interface Props {
+  setTasks : React.Dispatch<React.SetStateAction<ITask[]>>
+}
+
+function Form({setTasks}: Props) {
   const [task, setTask] = useState('');
   const [timer, setTimer] = useState('00:00:00');
 
@@ -23,7 +27,10 @@ function Form({setTasks}: {setTasks : React.Dispatch<React.SetStateAction<ITask[
         }
       ]
     );        
+    setTask("");
+    setTimer("00:00:00")
   } 
+
 
   return(
     <form className={style.newTask} onSubmit={addNewTask}>
